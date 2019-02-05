@@ -1,0 +1,38 @@
+{
+  "name": "@j.u.p.iter/react-checkbox",
+  "version": "0.0.1",
+  "description": "Reusable checkbox component",
+  "keywords": [
+    "react",
+    "checkbox"
+  ],
+  "main": "dist/lib/react-checkbox.cjs.js",
+  "module": "dist/lib/react-checkbox.esm.js",
+  "umd:main": "dist/lib/react-checkbox.umd.min.js",
+  "source": "dist/lib/react-checkbox.js",
+  "typings": "dist/types",
+  "repository": "git@github.com:j-u-p-iter/react-checkbox.git",
+  "author": "Leontyev Kirill (j.u.p.iter) <pn79122821224@gmail.com> (http://j-u-p-iter.pro/)",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "commit": "jupiter-scripts precommit --allowJs",
+    "build": "jupiter-scripts build --bundle",
+    "start": "yarn run build --watch",
+    "lint": "jupiter-scripts lint --format codeFrame",
+    "lint:fix": "yarn run lint --fix",
+    "test": "jupiter-scripts test"
+  },
+  "devDependencies": {
+    "@j.u.p.iter/jupiter-scripts": "^1.6.0",
+    "@types/react": "^16.7.18",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-testing-library": "^5.4.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.4.2"
+  }
+}
