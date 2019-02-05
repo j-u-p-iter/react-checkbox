@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox renders properly by default 1`] = `
+<label>
+  <input
+    data-testid="checkbox"
+    name="some-name"
+    type="checkbox"
+  />
+</label>
+`;
+
+exports[`Checkbox renders properly with all props 1`] = `
+<label
+  class="container-class-name"
+>
+  <input
+    checked=""
+    data-testid="checkbox"
+    disabled=""
+    name="checkbox"
+    type="checkbox"
+  />
+  <span
+    class="icon-class-name"
+  >
+    <span>
+      Some icon
+    </span>
+  </span>
+  <span
+    class="label-class-name"
+  >
+    Some label
+  </span>
+</label>
+`;
