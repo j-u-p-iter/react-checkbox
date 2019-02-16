@@ -28,22 +28,22 @@ interface State {
 }
 
 export class Checkbox extends React.PureComponent<Props, State> {
-  public static defaultProps: DefaultProps = {
+  static defaultProps: DefaultProps = {
     defaultIsChecked: false,
     onChange: () => {},
     disabled: false
   };
 
-  public isControlled = (prop: AnyProp) => prop in this.props;
+  isControlled = (prop: AnyProp) => prop in this.props;
 
-  public state: State = {
+  state: State = {
     isChecked: (this.props as PropsWithDefault).defaultIsChecked
   };
 
   // We don't write props value to state, when we deal with controlled components.
   // When props are changed - component will be rerendered with new prop value.
   // So, we just take this new value and use in `render` method.
-  public getState(): State {
+  getState(): State {
     return (Object.keys(this.state) as Array<keyof State>).reduce(
       (resultState: State, stateProp: keyof State) => {
         const stateFromProps = this.props[stateProp];
@@ -59,7 +59,7 @@ export class Checkbox extends React.PureComponent<Props, State> {
     );
   }
 
-  public handleChange = (event: any) => {
+  handleChange = (event: any) => {
     const {
       currentTarget: { checked }
     } = event;
@@ -77,7 +77,7 @@ export class Checkbox extends React.PureComponent<Props, State> {
     }
   };
 
-  public render() {
+  render() {
     const { isChecked } = this.getState();
     const {
       label,
