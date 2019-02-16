@@ -8,7 +8,7 @@ interface Props {
   labelClassName?: string;
   defaultIsChecked?: boolean;
   isChecked?: boolean;
-  onChange?: (event: any) => void;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   disabled?: boolean;
   iconEl?: React.ReactNode;
 }
