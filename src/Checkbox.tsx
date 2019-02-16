@@ -27,6 +27,8 @@ interface State {
   isChecked: boolean;
 }
 
+export const TEST_ID = "checkbox";
+
 export class Checkbox extends React.PureComponent<Props, State> {
   static defaultProps: DefaultProps = {
     defaultIsChecked: false,
@@ -34,7 +36,7 @@ export class Checkbox extends React.PureComponent<Props, State> {
     disabled: false
   };
 
-  isControlled = (prop: AnyProp) => prop in this.props;
+  isControlled = (prop: AnyProp): boolean => prop in this.props;
 
   state: State = {
     isChecked: (this.props as PropsWithDefault).defaultIsChecked
@@ -97,7 +99,7 @@ export class Checkbox extends React.PureComponent<Props, State> {
           checked={isChecked}
           onChange={this.handleChange}
           disabled={disabled}
-          data-testid="checkbox"
+          data-testid={TEST_ID}
         />
         {iconEl ? <span className={iconClassName}>{iconEl}</span> : null}
         {label ? <span className={labelClassName}>{label}</span> : null}

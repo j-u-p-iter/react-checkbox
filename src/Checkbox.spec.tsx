@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cleanup, fireEvent, render } from "react-testing-library";
 
-import { Checkbox } from ".";
+import { Checkbox, TEST_ID } from ".";
 
 describe("Checkbox", () => {
   afterEach(cleanup);
@@ -34,28 +34,26 @@ describe("Checkbox", () => {
 
     beforeEach(() => {
       class Controlled extends React.PureComponent<any> {
-        public state = {
+        state = {
           isChecked: false
         };
 
-        public handleChange = ({ currentTarget: { checked } }: any) => {
+        handleChange = ({ currentTarget: { checked } }: any) => {
           this.setState({
             isChecked: checked
           });
         };
 
-        public render() {
+        render() {
           const { isChecked } = this.state;
 
           return (
-            <>
-              <Checkbox
-                name="checkbox"
-                label="Some label"
-                onChange={this.handleChange}
-                isChecked={isChecked}
-              />
-            </>
+            <Checkbox
+              name="checkbox"
+              label="Some label"
+              onChange={this.handleChange}
+              isChecked={isChecked}
+            />
           );
         }
       }
@@ -63,16 +61,16 @@ describe("Checkbox", () => {
       ControlledCheckbox = Controlled;
     });
 
-    it("calls onChange with correct argument", () => {
+    it("updates state on Checkbox correctly", () => {
       const { getByTestId } = render(<ControlledCheckbox />);
 
-      fireEvent.click(getByTestId("checkbox"));
+      fireEvent.click(getByTestId(TEST_ID));
 
-      expect((getByTestId("checkbox") as HTMLInputElement).checked).toBe(true);
+      expect((getByTestId(TEST_ID) as HTMLInputElement).checked).toBe(true);
 
-      fireEvent.click(getByTestId("checkbox"));
+      fireEvent.click(getByTestId(TEST_ID));
 
-      expect((getByTestId("checkbox") as HTMLInputElement).checked).toBe(false);
+      expect((getByTestId(TEST_ID) as HTMLInputElement).checked).toBe(false);
     });
   });
 
@@ -84,31 +82,31 @@ describe("Checkbox", () => {
         <Checkbox name="checkbox" label="Some label" onChange={onChange} />
       );
 
-      fireEvent.click(getByTestId("checkbox"));
+      fireEvent.click(getByTestId(TEST_ID));
 
       expect(onChange).toHaveBeenCalledTimes(1);
       expect(onChange.mock.calls[0][0].currentTarget).toBeDefined();
 
-      fireEvent.click(getByTestId("checkbox"));
+      fireEvent.click(getByTestId(TEST_ID));
 
       expect(onChange).toHaveBeenCalledTimes(2);
       expect(onChange.mock.calls[0][0].currentTarget).toBeDefined();
     });
   });
 
-  describe("works properly without onChange callback", () => {
-    it("calls onChange with correct argument", () => {
+  describe("without onChange callback", () => {
+    it("doesn't throw error", () => {
       const { getByTestId } = render(
         <Checkbox name="checkbox" label="Some label" />
       );
 
-      fireEvent.click(getByTestId("checkbox"));
+      fireEvent.click(getByTestId(TEST_ID));
 
-      expect((getByTestId("checkbox") as HTMLInputElement).checked).toBe(true);
+      expect((getByTestId(TEST_ID) as HTMLInputElement).checked).toBe(true);
 
-      fireEvent.click(getByTestId("checkbox"));
+      fireEvent.click(getByTestId(TEST_ID));
 
-      expect((getByTestId("checkbox") as HTMLInputElement).checked).toBe(false);
+      expect((getByTestId(TEST_ID) as HTMLInputElement).checked).toBe(false);
     });
   });
 });
